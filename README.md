@@ -1,24 +1,27 @@
 📘 Spring Boot Course API
-A simple RESTful API built with Spring Boot that allows you to retrieve course data using filters like status, title, ID, and code.
+This is a simple RESTful API built with Spring Boot that allows you to retrieve course data using various filters such as status, title, ID, and code.
 
 🔗 Base URL
-bash
-Copy
-Edit
+The base URL for all API endpoints is:
+
+Bash
+
 http://localhost:8080/api/v1/courses
 📌 Endpoints
+Here's a breakdown of the available endpoints and how to use them:
+
 1. ✅ Get All Courses by Status
+Retrieve a list of courses filtered by their active status.
+
 Request:
 
-bash
-Copy
-Edit
-GET /api/v1/courses?status=false
-Response:
+Bash
 
-json
-Copy
-Edit
+GET /api/v1/courses?status=false
+Example Response:
+
+JSON
+
 [
   {
     "id": "939541e4-261b-489f-a063-5a8c6e72ff21",
@@ -36,17 +39,17 @@ Edit
   }
 ]
 2. 🔍 Get Courses by Title and Status
+Find courses matching a specific title (case-insensitive) and status.
+
 Request:
 
-bash
-Copy
-Edit
-GET /api/v1/courses/title?status=true&title=spring
-Response:
+Bash
 
-json
-Copy
-Edit
+GET /api/v1/courses/title?status=true&title=spring
+Example Response:
+
+JSON
+
 [
   {
     "id": "5053f6ee-c472-4592-aeaf-b87601f70429",
@@ -64,17 +67,17 @@ Edit
   }
 ]
 3. 🆔 Get Course by ID
+Get a single course by its unique identifier.
+
 Request:
 
-bash
-Copy
-Edit
-GET /api/v1/courses/id/939541e4-261b-489f-a063-5a8c6e72ff21
-Response:
+Bash
 
-json
-Copy
-Edit
+GET /api/v1/courses/id/939541e4-261b-489f-a063-5a8c6e72ff21
+Example Response:
+
+JSON
+
 {
   "id": "939541e4-261b-489f-a063-5a8c6e72ff21",
   "code": "ISTAD-002",
@@ -83,17 +86,17 @@ Edit
   "status": false
 }
 4. 🔤 Get Course by Code
+Retrieve a single course by its course code.
+
 Request:
 
-bash
-Copy
-Edit
-GET /api/v1/courses/code/ISTAD-001
-Response:
+Bash
 
-json
-Copy
-Edit
+GET /api/v1/courses/code/ISTAD-001
+Example Response:
+
+JSON
+
 {
   "id": "5053f6ee-c472-4592-aeaf-b87601f70429",
   "code": "ISTAD-001",
@@ -101,4 +104,4 @@ Edit
   "price": 100,
   "status": true
 }
-Let me know if you’d like me to convert this into a Markdown file, Swagger/OpenAPI format, or Postman collection for testing!
+Would you like me to convert this information into a Swagger/OpenAPI format for interactive documentation, or a Postman collection for easy testing?
