@@ -1,32 +1,24 @@
-# 📘 Spring Boot Course API
+📘 Spring Boot Course API
+A simple RESTful API built with Spring Boot that allows you to retrieve course data using filters like status, title, ID, and code.
 
-A simple RESTful API built with Spring Boot that allows you to retrieve course data by various filters such as **status**, **title**, **ID**, and **code**.
-
----
-
-## 🔗 Base URL
-
+🔗 Base URL
+bash
+Copy
+Edit
 http://localhost:8080/api/v1/courses
+📌 Endpoints
+1. ✅ Get All Courses by Status
+Request:
 
-yaml
+bash
 Copy
 Edit
-
----
-
-## 📌 Endpoints
-
-### 1. Get All Courses by Status
-
-**Request:**
 GET /api/v1/courses?status=false
+Response:
 
-pgsql
+json
 Copy
 Edit
-
-**Response:**
-```json
 [
   {
     "id": "939541e4-261b-489f-a063-5a8c6e72ff21",
@@ -43,7 +35,7 @@ Edit
     "status": false
   }
 ]
-2. Get Courses by Title and Status
+2. 🔍 Get Courses by Title and Status
 Request:
 
 bash
@@ -71,7 +63,7 @@ Edit
     "status": true
   }
 ]
-3. Get Course by ID
+3. 🆔 Get Course by ID
 Request:
 
 bash
@@ -90,7 +82,7 @@ Edit
   "price": 200,
   "status": false
 }
-4. Get Course by Code
+4. 🔤 Get Course by Code
 Request:
 
 bash
@@ -109,3 +101,4 @@ Edit
   "price": 100,
   "status": true
 }
+Let me know if you’d like me to convert this into a Markdown file, Swagger/OpenAPI format, or Postman collection for testing!
