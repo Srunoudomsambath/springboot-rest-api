@@ -1,13 +1,14 @@
 📘 Spring Boot Course API
 This is a simple RESTful API built with Spring Boot that allows you to retrieve course data using various filters such as status, title, ID, and code.
-Tech Stack
-Java 21
 
-Spring Boot
+## 🛠 Tech Stack
 
-Gradle
+- **Java 21**
+- **Spring Boot**
+- **Gradle**
+
 🔗 Base URL
-The base URL for all API endpoints is: http://localhost:8080/api/v1/courses
+The base URL for all API endpoints is:
 http://localhost:8080/api/v1/courses
 📌 Endpoints
 Here's a breakdown of the available endpoints and how to use them:
