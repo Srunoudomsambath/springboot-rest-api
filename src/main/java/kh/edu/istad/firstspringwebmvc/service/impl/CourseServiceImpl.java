@@ -2,14 +2,18 @@ package kh.edu.istad.firstspringwebmvc.service.impl;
 
 import kh.edu.istad.firstspringwebmvc.domain.Course;
 import kh.edu.istad.firstspringwebmvc.dto.CourseResponse;
+import kh.edu.istad.firstspringwebmvc.dto.CreateCourseRequeset;
 import kh.edu.istad.firstspringwebmvc.repository.CourseRepository;
 import kh.edu.istad.firstspringwebmvc.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -80,5 +84,50 @@ public class CourseServiceImpl implements CourseService {
                 .status(course.getStatus())
                 .build();
 
+    }
+
+    @Override
+    public CourseResponse createCourse(CreateCourseRequeset createCourseRequest) {
+        // Validate course code cause user cannot create the same course
+        boolean isCourseCodeExited =  courseRepository.getCourses()
+                .stream()
+                .anyMatch(course -> course.getCode().equals(createCourseRequest.code()));
+
+                if(isCourseCodeExited){
+                    // CONFLICT
+//                    throw new ResponseStatusException(
+//                            HttpClientErrorException.Conflict,
+//                            "Course code already Existed"
+//                    );
+                }
+
+        //Map  dto to domain model
+        Course course = Course.builder()
+                .id(UUID.randomUUID().toString())
+                .code(createCourseRequest.code())
+                .title(createCourseRequest.title())
+                .price(createCourseRequest.price())
+                .status(false)// business logic not yet set user create true unless we approve
+                .build();
+
+                courseRepository.getCourses().add(course);
+
+
+        return  CourseResponse.builder()
+                .code(createCourseRequest.code())
+                .title(createCourseRequest.title())
+                .price(createCourseRequest.price())
+                .status(false)// business logic not yet set user create true unless we approve
+                .build();
+    }
+
+    @Override
+    public void deleteCourseByCode(String code) {
+        List<Course> courseList = courseRepository.getCourses();
+        boolean removed = courseList.removeIf(course -> course.getCode().equalsIgnoreCase(code));
+
+        if(!removed){
+            throw new RuntimeException("Course not found with code: " + code);
+        }
     }
 }
